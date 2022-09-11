@@ -2,7 +2,7 @@
   "name": "f_loginb",
   "version": "1.0.0",
   "description": "Backend for the LOGIN project",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "prod": "npx nodemon server.js",
     "start": "node server.js",
