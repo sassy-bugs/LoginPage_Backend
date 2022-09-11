@@ -10,25 +10,25 @@ app.get('/account' , async(req, res) => {
         return;
      }
      var userAccount = await Account.findOne({ username: rUsername });
-     if(userAccount == null){
-        console.log('Create new account...');
-         var newAccount =new Account({
-            username : rUsername,
-            password : rPassword,
+   //   if(userAccount == null){
+   //      console.log('Create new account...');
+   //       var newAccount =new Account({
+   //          username : rUsername,
+   //          password : rPassword,
 
-            lastAuthentication : Date.now()
-         });
-         await newAccount.save();
-         res.send(newAccount);
-         return;
-     } else {
+   //          lastAuthentication : Date.now()
+   //       });
+   //       await newAccount.save();
+   //       res.send(newAccount);
+   //       return;
+   //   } else {
         if(rPassword == userAccount.password){
             userAccount.lastAuthentication = Date.now();
             await userAccount.save();
             res.send(userAccount);
             console.log('Retrieving account...');
             return;
-        }
+       // }
      }
      res.send("Invalid Credentials");
         return;
