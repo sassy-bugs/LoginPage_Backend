@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const scoreSchema = new Schema({
-    userID: String,
+    username: String,
     score: Number,
+    
     
 });
 
