@@ -1,6 +1,7 @@
 const express = require('express');
 // console.log(express);
-const keys = require('./config/keys.js');
+//const keys = require('./config/keys.js');
+const PORT = process.env.PORT || 3030;
 
 const app = express();
 //setup DB
@@ -15,6 +16,6 @@ require('./model/Score');
 require('./routes/authenticationRoutes')(app);
 require('./routes/scoreRoutes')(app);
 
-app.listen(keys.port, () => {
-    console.log("Listening on "+ keys.port);
+app.listen(PORT, () => {
+    console.log("Listening on "+ PORT);
 });
