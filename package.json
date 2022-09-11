@@ -4,6 +4,7 @@
   "description": "Backend for the LOGIN project",
   "main": "index.js",
   "scripts": {
+    "prod": "npx nodemon server.js",
     "dev": "npx nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
