@@ -26,8 +26,12 @@ app.get('/account' , async(req, res) => {
             res.send("Invalid Credentials");
             return;
          }
+         if(userAccount.lastAuthentication == 1)
+         {
+            res.send("Cannot login again");
+         }
         if(rPassword == userAccount.password){
-            userAccount.lastAuthentication = Date.now();
+            userAccount.lastAuthentication = 1;
             await userAccount.save();
             res.send(userAccount);
             console.log('Retrieving account...');
