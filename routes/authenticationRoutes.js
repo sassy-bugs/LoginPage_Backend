@@ -22,6 +22,10 @@ app.get('/account' , async(req, res) => {
    //       res.send(newAccount);
    //       return;
    //   } else {
+         if(rUsername != userAccount.username){
+            res.send("Invalid Credentials");
+            return;
+         }
         if(rPassword == userAccount.password){
             userAccount.lastAuthentication = Date.now();
             await userAccount.save();
