@@ -5,7 +5,7 @@ const accountSchema = new Schema({
     password: String,
     
 
-    lastAuthentication: Number,
+    lastAuthentication: Boolean,
 });
 
 mongoose.model('accounts', accountSchema);

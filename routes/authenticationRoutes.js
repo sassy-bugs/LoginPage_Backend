@@ -16,30 +16,27 @@ app.get('/account' , async(req, res) => {
             username : rUsername,
             password : rPassword,
 
-            lastAuthentication : 0
+            lastAuthentication : true
          });
          await newAccount.save();
          res.send(newAccount);
          return;
      } else {
-         if(rUsername != userAccount.username){
+         if(rUsername != userAccount.username || rPassword != userAccount.password){
             res.send("Invalid Credentials");
             return;
          }
-         if(userAccount.lastAuthentication == 1)
-         {
-            res.send("Cannot login again");
-            return;
-         }
-        if(rPassword == userAccount.password){
-            userAccount.lastAuthentication = 1;
+         //
+         
+        if(rPassword == userAccount.password && userAccount.lastAuthentication){
+            userAccount.lastAuthentication = false;
             await userAccount.save();
             res.send(userAccount);
             console.log('Retrieving account...');
             return;
        // }
      }
-     res.send("Invalid Credentials");
+     res.send("Invalid move");
         return;
    }
 
