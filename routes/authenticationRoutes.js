@@ -30,7 +30,7 @@ app.get('/account' , async(req, res) => {
          {
             res.send("Cannot login again");
          }
-        if(rPassword == userAccount.password){
+        else if(rPassword == userAccount.password){
             userAccount.lastAuthentication = 1;
             await userAccount.save();
             res.send(userAccount);
