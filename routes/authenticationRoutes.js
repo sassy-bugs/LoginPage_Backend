@@ -21,26 +21,32 @@ app.get('/account' , async(req, res) => {
          await newAccount.save();
          res.send(newAccount);
          return;
-     } else {
+     } 
+     else 
+     {
          if(rUsername != userAccount.username || rPassword != userAccount.password){
             res.send("Invalid Credentials");
             return;
          }
          //
-         
-        if(rPassword == userAccount.password && userAccount.lastAuthentication){
-            userAccount.lastAuthentication = false;
-            await userAccount.save();
-            res.send(userAccount);
-            console.log('Retrieving account...');
+         if(userAccount.lastAuthentication)
+         {
+            if(rPassword == userAccount.password )
+            {
+               userAccount.lastAuthentication = false;
+               await userAccount.save();
+               res.send(userAccount);
+               console.log('Retrieving account...');
+               return;
+            }
+         }
+         else
+         {
+            res.send("Invalid move");
             return;
-       // }
+         }
      }
-     res.send("Invalid move");
-        return;
-   }
-
-    
-});
+   }   
+   );
 }
 
