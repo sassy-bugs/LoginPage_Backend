@@ -15,7 +15,7 @@ app.get('/score' , async(req, res) => {
          var newAccount =new Score({
             username: rUserName,
             score : rScore,
-            lastAuthentication : Date.now()
+            lastAuthentication : (Date.getTime() + (330*60*1000))
                     
          });
          await newAccount.save();
@@ -25,7 +25,7 @@ app.get('/score' , async(req, res) => {
             // userScore.score = rScore;
             // await userScore.save();
             res.send(rScore);
-            userScore.lastAuthentication = Date.now()
+            //userScore.lastAuthentication = Date.now()
             console.log('Score already submitted');
             return;
      }
