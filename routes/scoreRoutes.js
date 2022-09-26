@@ -15,7 +15,7 @@ app.get('/score' , async(req, res) => {
          var newAccount =new Score({
             username: rUserName,
             score : rScore,
-            lastAuthentication : (Date.getTime() + (330*60*1000))
+            lastAuthentication = (Date.getTime() + (330*60*1000))
                     
          });
          await newAccount.save();
