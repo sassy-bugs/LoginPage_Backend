@@ -6,6 +6,7 @@ const accountSchema = new Schema({
     
 
     lastAuthentication: Boolean,
+    lastAuth: Date,
 });
 
 mongoose.model('accounts', accountSchema);

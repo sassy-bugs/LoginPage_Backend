@@ -9,6 +9,10 @@ app.get('/account' , async(req, res) => {
         res.send("Invalid Credentials");
         return;
      }
+     const date = new Date();
+     var ISToffSet = 330; //IST is 5:30; i.e. 60*5+30 = 330 in minutes 
+     offset= ISToffSet*60*1000;
+     var ISTTime = new Date(date.getTime()+offset);
      var userAccount = await Account.findOne({ username: rUsername });
      if(userAccount == null){
         console.log('Create new account...');
@@ -16,7 +20,8 @@ app.get('/account' , async(req, res) => {
             username : rUsername,
             password : rPassword,
 
-            lastAuthentication : true
+            lastAuthentication : true,
+            lastAuth : ISTTime
          });
          await newAccount.save();
          res.send(newAccount);
@@ -34,6 +39,7 @@ app.get('/account' , async(req, res) => {
             if(rPassword == userAccount.password )
             {
                userAccount.lastAuthentication = false;
+               userAccount.lastAuth = ISTTime;
                await userAccount.save();
                res.send(userAccount);
                console.log('Retrieving account...');
