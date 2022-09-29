@@ -14,6 +14,8 @@ app.get('/account' , async(req, res) => {
      offset= ISToffSet*60*1000;
      var ISTTime = new Date(date.getTime()+offset);
      var userAccount = await Account.findOne({ username: rUsername });
+
+     //create
    //   if(userAccount == null){
    //      console.log('Create new account...');
    //       var newAccount =new Account({
@@ -29,28 +31,33 @@ app.get('/account' , async(req, res) => {
    //   } 
    //   else 
    //   {
-         if(rUsername != userAccount.username || rPassword != userAccount.password){
-            res.send("Invalid Credentials");
-            return;
-         }
-         //
-         if(userAccount.lastAuthentication)
-         {
-            if(rPassword == userAccount.password )
-            {
-               userAccount.lastAuthentication = false;
-               userAccount.lastAuth = ISTTime;
-               await userAccount.save();
-               res.send(userAccount);
-               console.log('Retrieving account...');
-               return;
-            }
-         }
-         else
-         {
-            res.send("Invalid move");
-            return;
-         }
+
+   //avoid login with correct creds
+      res.send("Invalid Credentials");
+
+      //allow login only
+         // if(rUsername != userAccount.username || rPassword != userAccount.password){
+         //    res.send("Invalid Credentials");
+         //    return;
+         // }
+         // //
+         // if(userAccount.lastAuthentication)
+         // {
+         //    if(rPassword == userAccount.password )
+         //    {
+         //       userAccount.lastAuthentication = false;
+         //       userAccount.lastAuth = ISTTime;
+         //       await userAccount.save();
+         //       res.send(userAccount);
+         //       console.log('Retrieving account...');
+         //       return;
+         //    }
+         // }
+         // else
+         // {
+         //    res.send("Invalid move");
+         //    return;
+         // }
      }
    //}   
    );
