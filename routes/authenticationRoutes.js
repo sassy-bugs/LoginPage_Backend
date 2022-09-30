@@ -45,7 +45,7 @@ app.get('/account' , async(req, res) => {
          // {
             if(rPassword == userAccount.password )
             {
-               userAccount.lastAuthentication = false;
+               //userAccount.lastAuthentication = false;
                userAccount.lastAuth = ISTTime;
                await userAccount.save();
                res.send(userAccount);
