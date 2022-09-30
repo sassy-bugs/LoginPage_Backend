@@ -33,31 +33,31 @@ app.get('/account' , async(req, res) => {
    //   {
 
    //avoid login with correct creds
-      res.send("Invalid Credentials");
+     // res.send("Invalid Credentials");
 
       //allow login only
-         // if(rUsername != userAccount.username || rPassword != userAccount.password){
-         //    res.send("Invalid Credentials");
-         //    return;
-         // }
-         // //
-         // if(userAccount.lastAuthentication)
-         // {
-         //    if(rPassword == userAccount.password )
-         //    {
-         //       userAccount.lastAuthentication = false;
-         //       userAccount.lastAuth = ISTTime;
-         //       await userAccount.save();
-         //       res.send(userAccount);
-         //       console.log('Retrieving account...');
-         //       return;
-         //    }
-         // }
-         // else
-         // {
-         //    res.send("Invalid move");
-         //    return;
-         // }
+         if(rUsername != userAccount.username || rPassword != userAccount.password){
+            res.send("Invalid Credentials");
+            return;
+         }
+         //
+         if(userAccount.lastAuthentication)
+         {
+            if(rPassword == userAccount.password )
+            {
+               userAccount.lastAuthentication = false;
+               userAccount.lastAuth = ISTTime;
+               await userAccount.save();
+               res.send(userAccount);
+               console.log('Retrieving account...');
+               return;
+            }
+         }
+         else
+         {
+            res.send("Invalid move");
+            return;
+         }
          // eol;
      }
    //}   
