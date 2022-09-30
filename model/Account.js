@@ -5,7 +5,7 @@ const accountSchema = new Schema({
     password: String,
     
 
-    lastAuthentication: Boolean,
+    // lastAuthentication: Boolean,
     lastAuth: Date,
 });
 

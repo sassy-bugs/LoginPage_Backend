@@ -41,8 +41,8 @@ app.get('/account' , async(req, res) => {
             return;
          }
          //
-         if(userAccount.lastAuthentication)
-         {
+         // if(userAccount.lastAuthentication)
+         // {
             if(rPassword == userAccount.password )
             {
                userAccount.lastAuthentication = false;
@@ -52,15 +52,15 @@ app.get('/account' , async(req, res) => {
                console.log('Retrieving account...');
                return;
             }
-         }
+         //}
          else
          {
             res.send("Invalid move");
             return;
          }
          // eol;
-     }
-   //}   
+     //}
+   }   
    );
 }
 
