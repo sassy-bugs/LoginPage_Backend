@@ -14,26 +14,26 @@ app.get('/score' , async(req, res) => {
      offset= ISToffSet*60*1000;
      var ISTTime = new Date(date.getTime()+offset);
      var userScore = await Score.findOne({ username: rUserName });
-   //   if(userScore == null){
-   //      console.log('Saving score...');
-   //       var newAccount =new Score({
-   //          username: rUserName,
-   //          score : rScore,
-   //          lastAuthentication : ISTTime
+     if(userScore == null){
+        console.log('Saving score...');
+         var newAccount =new Score({
+            username: rUserName,
+            score : rScore,
+            lastAuthentication : ISTTime
                     
-   //       });
-   //       await newAccount.save();
-   //       res.send(newAccount);
-   //       return;
-   //   } else {
-   //          // userScore.score = rScore;
-   //          // await userScore.save();
-   //          res.send(rScore);
-   //          //userScore.lastAuthentication = Date.now()
-   //          console.log('Score already submitted');
-   //          return;
-   //   }
-    //  res.send("Invalid Credentials");
-    //     return;
+         });
+         await newAccount.save();
+         res.send(newAccount);
+         return;
+     } else {
+            // userScore.score = rScore;
+            // await userScore.save();
+            res.send(rScore);
+            //userScore.lastAuthentication = Date.now()
+            console.log('Score already submitted');
+            return;
+     }
+     res.send("Invalid Credentials");
+        return;
 });
 }
